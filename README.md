@@ -46,31 +46,19 @@ This project walks through the implementation of a **modern data lakehouse archi
 ## 🔄 Dataflow
 
 1. **External Source to Azure SQL Database**  
-   The external source in this project is my git repo in which I'm having 2 csv files (raw_data and incremental_data). In this step I have created one pipeline (source_prep) to dump the external source data into the Azure SQL Database. 
+   The external source in this project is my git repo in which I'm having 2 csv files (sales_data and incremental_data). In this step I have created one pipeline (source_prep) in Azure Datat Factory to dump the external source data into the Azure SQL Database (Sales_db). 
+
+<img src="Images/Source_prep_DataPipeline.png" alt="Source_Prep_Pipeline" width="600"/>
 
 
-2. **Transformation**  
-   - Tool: Databricks using PySpark  
-   - Process: Filtering, Cleaning, Joins, SCD  
-   - Output: Silver and Gold tables in Delta Lake
+Now after dumping all the data into the database. I have created another pipeline through which we can load initial data as well as incremental data from SQL Database to the Datalake at the bronze layer. 
+Before creating this pipeline I have first created one Watermark Table in Sales_db and a stored procedure. Let me tell you in Sales_db we have two tables - car_sales (storing raw_data) and Watermark (one Date_Id column only). 
 
-3. **Serving**  
-   - Model: Star Schema  
-   - Tool: Power BI  
-   - Output: Visual Reports for business insights
+Now, initial_load lookup is having the Date_id which is from the watermark table and current_load lookup is storing maximum Date_id from car_sales table. so when we run the pipeline stored procedure will basically update the date_id of watermak table with the maximum value of the Date_id in car_sales.
 
----
+<img src="Images/Data_Pipeline.png" alt="Incremental_Data_Pipeline" width="600"/>
 
-## 📂 Project Structure
+2. **Transformation and Serving**  
+   Did some transformations in the raw data from broze datalake and stored the transformed data into the silver datalake as delta table (one big table). Now the data is clean and transformed I have divided that one big table into fact and dimension tables using star schema. And will store it into the gold layer datalake and now the data is ready to serve for further use. I have connected it to Power BI
 
-```bash
-azure-data-engineering/
-│
-├── ingestion/                # ADF pipelines JSON
-├── transformations/          # PySpark notebooks/scripts
-├── data_modeling/            # Star schema explanation
-├── dashboard/                # Power BI screenshots or PBIX file
-├── Screenshot (18).png       # Architecture diagram
-├── README.md                 # Project documentation
-└── requirements.txt          # Dependencies (if applicable)
 
