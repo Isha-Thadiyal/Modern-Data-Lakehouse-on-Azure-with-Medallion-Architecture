@@ -35,11 +35,11 @@ This project walks through the implementation of a **modern data lakehouse archi
 
 ## 🧱 Medallion Architecture Overview
 
-| Layer   | Description                                            | Format    |
-|---------|--------------------------------------------------------|-----------|
-| Bronze  | Raw data ingested from SQL source via Data Factory     | Parquet   |
-| Silver  | Cleaned and transformed data using PySpark             | Parquet   |
-| Gold    | Final aggregated tables modeled for analytics/reporting| Delta     |
+| Layer   | Description                                            | 
+|---------|--------------------------------------------------------|
+| Bronze  | Raw data ingested from SQL source via Data Factory     |
+| Silver  | Cleaned and transformed data using PySpark             | 
+| Gold    | Final aggregated tables modeled for analytics/reporting| 
 
 ---
 
