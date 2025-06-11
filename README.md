@@ -3,7 +3,7 @@
 
 This project walks through the implementation of a **modern data lakehouse architecture** using Microsoft Azure services such as Data Factory, Databricks, Data Lake Gen2, and Power BI. The pipeline is structured using the **Medallion architecture (Bronze, Silver, Gold)** and includes **Delta Lake**, **Unity Catalog**, and **Dimensional Modeling (Star Schema)**.
 
-![Architecture Diagram](./Screenshot%20(18).png)
+<img src="Images/Azure Data Lakehouse Architecture Diagram.png" alt="Complete Architecture" width="600"/>
 
 ---
 
