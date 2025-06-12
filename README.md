@@ -59,6 +59,12 @@ Now, initial_load lookup is having the Date_id which is from the watermark table
 <img src="Images/Data_Pipeline.png" alt="Incremental_Data_Pipeline" width="600"/>
 
 2. **Transformation and Serving**  
- In Databricks created new Metastore and enabled Unity Catalog. Did some transformations in the raw data from broze datalake and stored the transformed data into the silver datalake as delta table (one big table). Now the data is clean and transformed I have divided that one big table into fact and dimension tables using star schema. Created Surrogate key for each Dimension Table and handled the SCD Type 1 And stored it into the gold layer datalake. After all the transformations I have created workflow in Databricks and now the data is ready to serve for further use. 
+ In Databricks, I have created new Metastore and enabled Unity Catalog. Did some transformations in the raw data from broze datalake and stored the transformed data into the silver datalake as parquet file (one big table). Now the data is clean and transformed I have divided that one big table into fact and dimension tables using star schema. Created Surrogate key for each Dimension Table and handled the SCD Type 1 And stored it into the gold layer datalake as delta table. After all the transformations then created workflow in Databricks and now the data is ready to serve for further use. 
 
+## Star Schema
 <img src="Images/Star_schema.png" alt="Complete Architecture" width="600"/>
+
+
+## DataFlow in Databricks
+<img src="Images/DataFlow.png" alt="Complete Architecture" width="600"/>
+
